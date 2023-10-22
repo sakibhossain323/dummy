@@ -1,29 +1,48 @@
 #include "file.h"
-#include <string>
 
-std::string FileHandler::ReadFile()
+std::vector<std::string> FileHandler::Read(std::string filepath)
 {
-    return "wtf wtf wtf";
+    FILE *fp = fopen(filepath.c_str(), "r");
+    if(fp == NULL)
+    {
+        throw "Error opening file";
+    }
+    std::vector<std::string> lines;
+    char line[10000];
+    while(fgets(line, 10000, fp))
+    {
+        lines.push_back(line);
+    }
+    fclose(fp);
+    return lines;
 }
 
-void FileHandler::Write(std::string filepath, std::string str)
+void FileHandler::Write(std::string filepath, std::string content)
 {
-    str.push_back('\n');
+    content.push_back('\n');
 
     FILE *fp = fopen(filepath.c_str(), "w");
-    if(fputs(str.c_str(), fp) == EOF)
+    if(fp == NULL)
+    {
+        throw "Error opening file";
+    }
+    if(fputs(content.c_str(), fp) == EOF)
     {
         throw "Error writing to file";
     }
     fclose(fp);
 }
 
-void FileHandler::WriteLine(std::string filepath, std::string str)
+void FileHandler::WriteLine(std::string filepath, std::string content)
 {
-    str.push_back('\n');
+    content.push_back('\n');
 
     FILE *fp = fopen(filepath.c_str(), "a");
-    if(fputs(str.c_str(), fp) == EOF)
+    if(fp == NULL)
+    {
+        throw "Error opening file";
+    }
+    if(fputs(content.c_str(), fp) == EOF)
     {
         throw "Error writing to file";
     }
