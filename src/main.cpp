@@ -1,5 +1,6 @@
 #include <iostream>
 #include "file.h"
+#include "console.h"
 
 int main ()
 {
@@ -11,8 +12,15 @@ int main ()
     std::vector<std::string> lines = dumbFileObj.Read("test.txt");
     for(auto i: lines)
     {
-        std::cout << i;
+        // std::cout << i;
+        Console::WriteLine(i);
     }
+
+    str = Console::ReadLine();
+    Console::WriteLine(str);
+
+    str = Console::ReadLine();
+    Console::WriteLine(str);
 
     return 0;
 }
