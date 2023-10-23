@@ -12,6 +12,7 @@ std::vector<std::string> FileHandler::Read(std::string filepath)
     while(fgets(line, 10000, fp))
     {
         lines.push_back(line);
+        lines.back().pop_back();
     }
     fclose(fp);
     return lines;
