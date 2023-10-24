@@ -1,21 +1,22 @@
-#include <iostream>
+// #include <iostream>
 #include "file.h"
 #include "console.h"
+#include "string.h"
 
 int main ()
 {
     
     FileHandler dumbFileObj;
-    std::string str = "ggwp gl\n\tglhf";
+    String str = "ggwp gl\n\tglhf";
     dumbFileObj.Write("test.txt", str);
     dumbFileObj.WriteLine("test.txt", str);
-    std::vector<std::string> lines = dumbFileObj.Read("test.txt");
-    for(auto i: lines)
+    List<String> lines = dumbFileObj.Read("test.txt");
+    for(int i = 0; i < lines.size(); i++)
     {
-        // std::cout << i;
-        Console::WriteLine(i);
+        Console::WriteLine(lines[i]);
     }
-
+    Console::WriteLine("br br br br ....");
+    Console::WriteLine(str);
     str = Console::ReadLine();
     Console::WriteLine(str);
 
